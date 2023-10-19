@@ -1,10 +1,9 @@
 // Business Logic
-window.addEventListener("load", function() {
-  document.getElementById("triangleInput").addEventListener("submit", getTriangles);
-});
+
 
 function getTriangles(e) {
   e.preventDefault();
+  window.alert("test")
   let sideA = parseInt(document.getElementById("sideA").value);
   let sideB = parseInt(document.getElementById("sideB").value);
   let sideC = parseInt(document.getElementById("sideC").value);
@@ -12,7 +11,10 @@ function getTriangles(e) {
 }
 
 function calculateTriangles(sideA,sideB,sideC) {  
-if (sideA === sideB === sideC) { 
+  if ((sideA + sideB <= sideC) || (sideA + sideC <= sideB) || (sideC + sideB <= sideA)) {
+    document.getElementById("resultString").innerText = "That's not a triangle! :( ";
+  }
+  else if (sideA === sideB && sideA === sideC) { 
   document.getElementById("resultString").innerText = "Equilateral";
 } else if ((sideA === sideB) || (sideA === sideC) || (sideB === sideC)) {
   document.getElementById("resultString").innerText = "Isosceles";
@@ -23,4 +25,7 @@ if (sideA === sideB === sideC) {
 }
 }
 
+window.addEventListener("load", function() {
+  document.getElementById("triangleInput").addEventListener("submit", getTriangles)
+})
 // UI Logic
